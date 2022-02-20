@@ -1,0 +1,16 @@
+{
+  "Version": "13.3.0",
+  "Name": "Adam Upload",
+  "DestinationType": "ImageUploader",
+  "RequestMethod": "POST",
+  "RequestURL": "https://files.adamscodebox.com/upload.php",
+  "Headers":{
+    "x-api-key": "{{CFG_API}}"
+  },
+  "Body": "MultipartFormData",
+  "FileFormName": "File",
+  "URL": "$json:url$",
+  "ThumbnailURL": "$json:thumbnail_url$",
+  "DeletionURL": "$json:deletion_url$",
+  "ErrorMessage": "$json:error$"
+}
