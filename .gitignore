@@ -1,3 +1,5 @@
 uploads/
 inc/config.php
 adamupload.sxcu
+tmp/*.sxcu
+test.php

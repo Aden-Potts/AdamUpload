@@ -39,6 +39,10 @@ function f_Error($e) {
  * 
  * @return String -> The HTML alert, escaped to prevent XSS.
  */
-function f_Success($e) {
-    return '<div class="alert alert-success"><b>Success!</b> '.htmlspecialchars($e).'</div>';
+function f_Success($e, $escape=true) {
+    if($escape == true) {
+        $e = htmlspecialchars($e);
+    }
+
+    return '<div class="alert alert-success"><b>Success!</b> '.$e.'</div>';
 }
