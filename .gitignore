@@ -1,5 +1,8 @@
-uploads/
-inc/config.php
-adamupload.sxcu
-tmp/*.sxcu
+*
+!/*.php
 test.php
+!/*.sql
+!/inc
+/inc/config.php
+/tmp/*
+!/tmp/index.php
