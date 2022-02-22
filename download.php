@@ -11,8 +11,8 @@ if(isset($_GET['f'])) {
         die("This isn't a valid download action. Stop being a dick head.");
     }
 
-    $dlcount = (int)$q[0]['download_count'] + 1;
-    $db->query("UPDATE `files` SET `download_count` = ? WHERE `filename` = ?", [$dlcount, $f]);
+   $dlcount = (int)$q[0]['download_count'] + 1;
+   $db->query("UPDATE `files` SET `download_count` = ? WHERE `filename` = ?", [$dlcount, $f]);
 
     $path = getcwd()."/tmp/$f.sxcu";
     if(file_exists($path)) {
@@ -31,4 +31,6 @@ if(isset($_GET['f'])) {
     } else {
         die("File is deleted.");
     }
+} else {
+    die("<h1>Downloading ../../../etc/passwd <br>oops we alerted the nsa</h1>");
 }
