@@ -14,26 +14,6 @@ require("inc/includes.php");
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-        <script>
-            //
-            $(() => {
-                $('#reg_submit').click(() => {
-                    let username = $('#reg_username').val();
-                    let invitecode = $('#reg_invitecode').val();
-
-                    $.post('register.php', {reg_username: username, reg_invitecode: invitecode}, (data) => {
-                        $('#alertSection').html(data);
-                    });
-                });
-            });
-        </script>
-
-        <style>
-            /* Set placeholder text to white so it doesn't blend in with the bg because bootstrap is kinda goofy and doesn't have a css class to do it for you. */
-            input[type="text"]::-webkit-input-placeholder {
-                color: rgba(175, 175, 175, 255);
-            }
-        </style>
     </head>
 
     <body style='background-image: url("./inc/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; height: auto;'>
