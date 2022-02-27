@@ -22,7 +22,7 @@ if($apikey != null) {
                 $res = unlink("$dir/$fname.$val");
 
                 if($res != false) {
-                    $db->query("DELETE FROM `files` WHERE `id` = ?", [$fname]);
+                    $db->query("DELETE FROM `files` WHERE `id` = ?", [$fdata['id']]);
 
                     die(Response("", 200, "File deleted."));
                 }
