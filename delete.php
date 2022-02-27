@@ -16,9 +16,6 @@ if($apikey != null) {
         die(Response("", 401, "This file doesn't exist."));
 
     $dir = getcwd()."/{$Cfg['UploadDir']}{$user['username']}";
-
-    var_dump($fdata);
-
     if((int)$fdata['creator_id'] == (int)$user['uid']) {
         foreach($Cfg['WhitelistedExtensions'] as $key => $val) {
             if(file_exists("$dir/$fname.$val")) {
