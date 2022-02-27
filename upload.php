@@ -36,6 +36,7 @@ $targetFile = $targetDir.basename("$fName.$filetype");
 
 $response = [
     "url" => "{$Cfg['Domain']}/{$Cfg['UploadDir']}$user/$fName.$filetype",
+    "deletion_url" => "{$Cfg['Domain']}/delete.php?id=$fName&key={$headers['X-Api-Key']}",
     "error" => "",
 ];
 
@@ -44,6 +45,11 @@ if(getimagesize($_FILES['File']['tmp_name']) == false) {
 } else if(!in_array($filetype, $Cfg['WhitelistedExtensions'])) {
     die(Response("", 403, "This file type isn't accepted."));
 } else {
+    $db->insert("files", ["filename" => $fName, "creator_id" => $q[0]['uid']]);
+    if($db->error) {
+        die(Response("", 500, "Failed to upload file! {$db->errorMsg}"));
+    }
+    
     move_uploaded_file($_FILES['File']['tmp_name'], $targetFile);
 }
 

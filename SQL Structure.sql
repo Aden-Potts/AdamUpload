@@ -2,6 +2,7 @@
 CREATE TABLE `files` (
   `id` int(11) NOT NULL,
   `filename` text NOT NULL,
+  `creator_uid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
   `download_count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

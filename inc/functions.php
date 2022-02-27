@@ -46,3 +46,29 @@ function f_Success($e, $escape=true) {
 
     return '<div class="alert alert-success"><b>Success!</b> '.$e.'</div>';
 }
+
+function GetUserData($apikey) {
+    global $db;
+
+    $q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$apikey]);
+    if($db->error) {
+        return null;
+    } else if(count($q)== 0) {
+        return false;
+    }
+
+    return $q[0];
+}
+
+function GetFileData($filename) {
+    global $db;
+
+    $q = $db->query("SELECT * FROM `files` WHERE `filename` = ?", [$filename]);
+    if($db->error) {
+        return null;
+    } else if(count($q)== 0) {
+        return false;
+    }
+
+    return $q[0];
+}
