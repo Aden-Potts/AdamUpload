@@ -7,13 +7,17 @@ require("inc/includes.php");
 
 $headers = getallheaders();
 
-if(!isset($headers['x-api-key']) || !isset($headers['X-Api-Key'])) {
-   die(Response("", 403, "Unauthorized: No key supplied."));
+$key = "notarealkey";
+
+if(isset($headers['x-api-key'])) {
+    $key = $headers['x-api-key'];
+} else if(isset($headers['X-Api-Key'])) {
+    $key = $headers['X-Api-Key'];
+} else {
+    die(Response("", 403, "Unauthorized: No key supplied."));
 }
 
-$key = $headers['x-api-key'] || $headers['X-Api-Key'];
-
-$q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$headers['x-api-key']]);
+$q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$key]);
 if($db->error) 
         die(Response("", 500, "Backend Error"));
 
@@ -47,7 +51,7 @@ if($filetype != "zip" && getimagesize($_FILES['File']['tmp_name']) == false) {
 } else if(!in_array($filetype, $Cfg['WhitelistedExtensions'])) {
     die(Response("", 403, "This file type isn't accepted."));
 } else {
-    $db->insert("files", ["filename" => $fName, "creator_id" => $q[0]['uid']]);
+    $db->insert("files", ["filename" => $fName, "creator_uid" => $q[0]['uid']]);
     if($db->error) {
         die(Response("", 500, "Failed to upload file! {$db->errorMsg}"));
     }
