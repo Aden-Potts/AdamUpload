@@ -1,9 +1,9 @@
 {
   "Version": "13.3.0",
   "Name": "Adam Upload",
-  "DestinationType": "ImageUploader",
+  "DestinationType": "ImageUploader, FileUploader",
   "RequestMethod": "POST",
-  "RequestURL": "https://files.adamscodebox.com/upload.php",
+  "RequestURL": "{{CFG_DOMAIN}}/upload.php",
   "Headers":{
     "x-api-key": "{{CFG_API}}"
   },

@@ -7,11 +7,11 @@ require("inc/includes.php");
 
 $headers = getallheaders();
 
-if(!isset($headers['X-Api-Key'])) {
+if(!isset($headers['x-api-key'])) {
    die(Response("", 403, "Unauthorized: No key supplied."));
 }
 
-$q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$headers['X-Api-Key']]);
+$q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$headers['x-api-key']]);
 if($db->error) 
         die(Response("", 500, "Backend Error"));
 
@@ -36,11 +36,11 @@ $targetFile = $targetDir.basename("$fName.$filetype");
 
 $response = [
     "url" => "{$Cfg['Domain']}/{$Cfg['UploadDir']}$user/$fName.$filetype",
-    "deletion_url" => "{$Cfg['Domain']}/delete.php?id=$fName&key={$headers['X-Api-Key']}",
+    "deletion_url" => "{$Cfg['Domain']}/delete.php?id=$fName&key={$headers['x-api-key']}",
     "error" => "",
 ];
 
-if(getimagesize($_FILES['File']['tmp_name']) == false) {
+if($filetype != "zip" && getimagesize($_FILES['File']['tmp_name']) == false) {
     die(Response("", 403, "This file type isn't accepted."));
 } else if(!in_array($filetype, $Cfg['WhitelistedExtensions'])) {
     die(Response("", 403, "This file type isn't accepted."));

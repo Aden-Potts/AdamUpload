@@ -41,6 +41,7 @@ if(isset($_POST['reg_username'])) {
 
     $baseData = file_get_contents(getcwd()."/inc/base config.sxcu");
     $baseData = str_replace("{{CFG_API}}", $data['apikey'], $baseData);
+    $baseData = str_replace("{{CFG_DOMAIN}}", $Cfg["Domain"], $baseData);
 
     $fName = bin2hex(random_bytes(15));
     $fPath = getcwd()."/tmp/$fName.sxcu";
