@@ -51,7 +51,9 @@ if(isset($_POST['reg_username'])) {
     fwrite($File, $baseData);
     fclose($File);
 
-    $db->insert("files", ["filename" => $fName]);
+    $q = $db->insert("files", ["filename" => $fName]);
+    if($db->error)
+        die(f_Error($db->errorMsg));
 
     die(f_Success("You've been registered! Click <a href='download.php?f=$fName'>here</a> to download your config.", false));
 }
