@@ -7,9 +7,11 @@ require("inc/includes.php");
 
 $headers = getallheaders();
 
-if(!isset($headers['x-api-key'])) {
+if(!isset($headers['x-api-key']) || !isset($headers['X-Api-Key'])) {
    die(Response("", 403, "Unauthorized: No key supplied."));
 }
+
+$key = $headers['x-api-key'] || $headers['X-Api-Key'];
 
 $q = $db->query("SELECT * FROM `users` WHERE `apikey` = ?", [$headers['x-api-key']]);
 if($db->error) 
