@@ -16,7 +16,7 @@ require("inc/includes.php");
         crossorigin="anonymous"></script>
     </head>
 
-    <body style='background-image: url("./inc/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; height: auto;'>
+    <body style='background-image: url("./inc/bg.jpg"); background-repeat: no-repeat; background-size: 100%; height: auto;'>
         <div style="width:750px;position:fixed;top:50%;left:50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%)">
             <div class="card text-white card-outline bg-gray-dark">
                 <div class="card-header text-center">
